@@ -20,6 +20,8 @@ import java.util.List;
  */
 public interface IGuiaDao<T> extends IGenericDAO<T> {
     
+    public List<Guia> findByDate(Date date);
+    
     public Guia findByCuentaFolio(Cuenta cuenta, int folio);
     
     public Guia findLastGuiaByBusFecha(Bus bus, Date fecha);

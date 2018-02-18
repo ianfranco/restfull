@@ -5,7 +5,10 @@
  */
 package com.areatecnica.sigf.rest.entities.service;
 
+import com.areatecnica.sigf.rest.dao.IGuiaDao;
+import com.areatecnica.sigf.rest.dao.impl.IGuiaDaoImpl;
 import com.areatecnica.sigf.rest.entities.Guia;
+import java.util.Date;
 import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
@@ -28,6 +31,8 @@ import javax.ws.rs.core.MediaType;
 @Path("com.areatecnica.sigf.rest.entities.guia")
 public class GuiaFacadeREST extends AbstractFacade<Guia> {
 
+    private IGuiaDao dao; 
+    
     @PersistenceContext(unitName = "com.areatecnica.sigf_SIGFRest_war_1.0PU")
     private EntityManager em;
 
@@ -81,6 +86,16 @@ public class GuiaFacadeREST extends AbstractFacade<Guia> {
     @Produces(MediaType.TEXT_PLAIN)
     public String countREST() {
         return String.valueOf(super.count());
+    }
+    
+    
+    /*NUEVO METODO*/
+    @GET
+    @Path("guiasxfechas")
+    @Produces(MediaType.APPLICATION_JSON)
+    public List<Guia> findGuiasByDate(@PathParam("fecha") Date fecha){
+        this.dao = new IGuiaDaoImpl();
+        return this.dao.findByDate(fecha);
     }
 
     @Override

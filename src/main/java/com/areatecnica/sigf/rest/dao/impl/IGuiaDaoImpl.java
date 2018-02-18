@@ -130,4 +130,15 @@ public class IGuiaDaoImpl extends GenericDAOImpl<Guia> implements IGuiaDao<Guia>
             return null;
         }
     }
+
+    @Override
+    public List<Guia> findByDate(Date date) {
+        try {
+            return this.entityManager.
+                    createNamedQuery("Guia.findByGuiaFecha").
+                    setParameter("guiaFecha", date).getResultList();
+        } catch (NoResultException ne) {
+            return null;
+        }
+    }
 }

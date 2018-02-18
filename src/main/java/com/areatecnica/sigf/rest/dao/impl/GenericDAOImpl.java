@@ -23,7 +23,7 @@ public class GenericDAOImpl<T> implements IGenericDAO<T> {
 
     private Class<T> entityClass;
 
-    protected static final EntityManagerFactory emf = Persistence.createEntityManagerFactory("com.areatecnica_sigf-admin_war_2PU");
+    protected static final EntityManagerFactory emf = Persistence.createEntityManagerFactory("com.areatecnica.sigf_SIGFRest_war_1.0PU");
     protected EntityManager entityManager;
 
     public GenericDAOImpl() {
