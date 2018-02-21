@@ -25,7 +25,7 @@ import javax.ws.rs.core.MediaType;
  * @author ianfrancoconcha
  */
 @Stateless
-@Path("com.areatecnica.sigf.rest.entities.comuna")
+@Path("comuna")
 public class ComunaFacadeREST extends AbstractFacade<Comuna> {
 
     @PersistenceContext(unitName = "com.areatecnica.sigf_SIGFRest_war_1.0PU")
@@ -76,6 +76,13 @@ public class ComunaFacadeREST extends AbstractFacade<Comuna> {
         return super.findRange(new int[]{from, to});
     }
 
+    @GET
+    @Path("count2")
+    @Produces(MediaType.TEXT_PLAIN)
+    public String countREST2() {
+        return String.valueOf(super.count());
+    }
+    
     @GET
     @Path("count")
     @Produces(MediaType.TEXT_PLAIN)

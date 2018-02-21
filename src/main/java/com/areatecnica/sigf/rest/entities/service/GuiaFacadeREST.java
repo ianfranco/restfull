@@ -28,7 +28,7 @@ import javax.ws.rs.core.MediaType;
  * @author ianfrancoconcha
  */
 @Stateless
-@Path("com.areatecnica.sigf.rest.entities.guia")
+@Path("guia")
 public class GuiaFacadeREST extends AbstractFacade<Guia> {
 
     private IGuiaDao dao; 
@@ -91,13 +91,22 @@ public class GuiaFacadeREST extends AbstractFacade<Guia> {
     
     /*NUEVO METODO*/
     @GET
-    @Path("guiasxfechas")
+    @Path("/consultaq/{fecha2}")
+    
+    @Produces(MediaType.TEXT_PLAIN)
+    public String test(@PathParam("fecha2") Integer fecha){
+        this.dao = new IGuiaDaoImpl();
+        return "AWESOME"+fecha;
+    }
+
+    @GET
+    @Path("/consulta/{fecha}")
     @Produces(MediaType.APPLICATION_JSON)
     public List<Guia> findGuiasByDate(@PathParam("fecha") Date fecha){
         this.dao = new IGuiaDaoImpl();
         return this.dao.findByDate(fecha);
     }
-
+    
     @Override
     protected EntityManager getEntityManager() {
         return em;
